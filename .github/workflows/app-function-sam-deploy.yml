@@ -16,10 +16,10 @@ jobs:
           aws-region: us-east-1
       - name: 'Create env file'
         run: 
-          touch ./weather-app-function/src/.env
-          echo WEATHER_API=${{ secrets.WEATHER_API }} >> ./weather-app-function/src/.env
-          echo WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }} >> ./weather-app-function/src/.env
-          echo WEATHER_API_HOST=${{ secrets.WEATHER_API_HOST }} >> ./weather-app-function/src/.env
-          cat ./weather-app-function/src/.env
+          touch .env
+          echo WEATHER_API=${{ secrets.WEATHER_API }} >> .env
+          echo WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }} >> .env
+          echo WEATHER_API_HOST=${{ secrets.WEATHER_API_HOST }} >> .env
+          cat .env
       - run: sam build --use-container --template ./weather-app-function/template.yaml
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --config-file ./weather-app-function/samconfig.toml 
